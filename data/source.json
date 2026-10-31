@@ -29,24 +29,28 @@
       "size": 138408
     },
     {
+      "path": "data/profile.png",
+      "size": 1804
+    },
+    {
       "path": "data/tracks.json",
       "size": 4214
     },
     {
       "path": "data/user.png",
-      "size": 1804
+      "size": 530
     },
     {
       "path": "index.html",
-      "size": 2257
+      "size": 2177
     },
     {
       "path": "js/apps.js",
-      "size": 28871
+      "size": 28876
     },
     {
       "path": "js/config.js",
-      "size": 645
+      "size": 737
     },
     {
       "path": "js/data.js",

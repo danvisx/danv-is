@@ -607,7 +607,7 @@ export function createApps(wm, notify) {
       page.replaceChildren(...[
         h('section', { class: 'li-card li-top' },
           h('div', { class: 'li-banner' }),
-          h('img', { class: 'li-avatar', src: icons.avatar, alt: '' }),
+          h('img', { class: 'li-avatar', src: SITE.profilePhoto, alt: '' }),
           h('h1', {}, p.name ?? SITE.owner),
           p.headline && h('p', { class: 'li-headline' }, p.headline),
           h('p', { class: 'li-meta' }, p.location && `${p.location} · `,

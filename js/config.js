@@ -5,6 +5,8 @@ export const SITE = {
   host: 'danv.is',
   // Profile picture for the launcher, lock screen, mail window and notifications.
   avatar: 'data/user.png',
+  // The real photo, only shown in the LinkedIn window.
+  profilePhoto: 'data/profile.png',
 
   linkedin: 'https://www.linkedin.com/in/danvisan/',
   hardcover: 'https://hardcover.app/@danvsx',
