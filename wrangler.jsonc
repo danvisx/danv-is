@@ -1,0 +1,15 @@
+// Cloudflare Workers static assets: the whole repo is the site. worker.js only
+// runs for /music/*, to answer the Range requests audio seeking needs.
+{
+  "name": "danv-is",
+  "compatibility_date": "2026-10-23",
+  "main": "worker.js",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/music/*"]
+  },
+  // Set to false once the custom domain works, so only danv.is serves the site.
+  "workers_dev": true,
+  "preview_urls": false
+}

@@ -1,0 +1,6 @@
+# Kept out of the deployed site (wrangler reads this like .gitignore).
+node_modules
+.wrangler
+.git
+.env*
+.dev.vars*

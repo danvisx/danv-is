@@ -1,6 +1,10 @@
 {
   "files": [
     {
+      "path": ".assetsignore",
+      "size": 116
+    },
+    {
       "path": ".github/workflows/refresh-data.yml",
       "size": 863
     },
@@ -167,6 +171,14 @@
     {
       "path": "scripts/serve.mjs",
       "size": 2929
+    },
+    {
+      "path": "worker.js",
+      "size": 2525
+    },
+    {
+      "path": "wrangler.jsonc",
+      "size": 469
     }
   ]
 }

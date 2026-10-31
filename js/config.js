@@ -11,8 +11,8 @@ export const SITE = {
   unsplash: 'https://unsplash.com/@dsvi',
 
   // Shown by `fastfetch` in the terminal.
-  hosting: 'TBD (somewhere static and cheap)',
-  source: 'not public yet',
+  hosting: 'Cloudflare Pages',
+  source: 'https://github.com/danvisx/danv-is',
 
   // Public access key from https://web3forms.com (it is safe to ship to the browser).
   web3formsKey: '4255bcb7-71b6-4919-a517-5a155c230540',
