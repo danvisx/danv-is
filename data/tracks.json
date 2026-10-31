@@ -1,0 +1,108 @@
+{
+  "tracks": [
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2001%20press%20start.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - press start",
+      "album": "Barbershop Simulator™",
+      "track": 1,
+      "duration": 66
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2002%20haircut%20experts%20(cutscene).mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - haircut experts (cutscene)",
+      "album": "Barbershop Simulator™",
+      "track": 2,
+      "duration": 156
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2003%20a%20new%20day.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - a new day",
+      "album": "Barbershop Simulator™",
+      "track": 3,
+      "duration": 283
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2004%20working%20hard.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - working hard",
+      "album": "Barbershop Simulator™",
+      "track": 4,
+      "duration": 243
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2005%20staff%20meeting.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - staff meeting",
+      "album": "Barbershop Simulator™",
+      "track": 5,
+      "duration": 191
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2006%20enough%20for%20today.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - enough for today",
+      "album": "Barbershop Simulator™",
+      "track": 6,
+      "duration": 203
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2007%20coming%20home.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - coming home",
+      "album": "Barbershop Simulator™",
+      "track": 7,
+      "duration": 216
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2008%20reputation%20level%20up%20%2B.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - reputation level up +",
+      "album": "Barbershop Simulator™",
+      "track": 8,
+      "duration": 72
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2009%20decisive%20request.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - decisive request",
+      "album": "Barbershop Simulator™",
+      "track": 9,
+      "duration": 260
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2010%20the%20last%20challenge.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - the last challenge",
+      "album": "Barbershop Simulator™",
+      "track": 10,
+      "duration": 258
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2011%20special%20client.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - special client",
+      "album": "Barbershop Simulator™",
+      "track": 11,
+      "duration": 231
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2012%20vacation%20mode%20on.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - vacation mode on",
+      "album": "Barbershop Simulator™",
+      "track": 12,
+      "duration": 224
+    },
+    {
+      "url": "music/slowerpace%20%E9%9F%B3%E6%A5%BD%20-%20Barbershop%20Simulator%E2%84%A2%20-%2013%20final%20credits.mp3",
+      "cover": "data/covers/220f486d14c2.jpg",
+      "title": "slowerpace 音楽 - final credits",
+      "album": "Barbershop Simulator™",
+      "track": 13,
+      "duration": 203
+    }
+  ]
+}

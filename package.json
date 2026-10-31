@@ -1,0 +1,12 @@
+{
+  "name": "danv-is",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-data.mjs",
+    "tracks": "node scripts/build-tracks.mjs",
+    "manifest": "node scripts/build-manifest.mjs",
+    "build": "node scripts/build-tracks.mjs && node scripts/build-manifest.mjs",
+    "dev": "node scripts/serve.mjs"
+  }
+}

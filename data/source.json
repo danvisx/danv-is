@@ -1,0 +1,172 @@
+{
+  "files": [
+    {
+      "path": ".github/workflows/refresh-data.yml",
+      "size": 863
+    },
+    {
+      "path": ".gitignore",
+      "size": 69
+    },
+    {
+      "path": "css/style.css",
+      "size": 43713
+    },
+    {
+      "path": "data/books.json",
+      "size": 100769
+    },
+    {
+      "path": "data/covers/220f486d14c2.jpg",
+      "size": 147187
+    },
+    {
+      "path": "data/photos.json",
+      "size": 138408
+    },
+    {
+      "path": "data/tracks.json",
+      "size": 4214
+    },
+    {
+      "path": "data/user.png",
+      "size": 1804
+    },
+    {
+      "path": "index.html",
+      "size": 2257
+    },
+    {
+      "path": "js/apps.js",
+      "size": 29388
+    },
+    {
+      "path": "js/config.js",
+      "size": 641
+    },
+    {
+      "path": "js/data.js",
+      "size": 1499
+    },
+    {
+      "path": "js/dom.js",
+      "size": 1972
+    },
+    {
+      "path": "js/icons.js",
+      "size": 12646
+    },
+    {
+      "path": "js/konsole.js",
+      "size": 7876
+    },
+    {
+      "path": "js/main.js",
+      "size": 10175
+    },
+    {
+      "path": "js/vscode.js",
+      "size": 11701
+    },
+    {
+      "path": "js/wallpaper.js",
+      "size": 26493
+    },
+    {
+      "path": "js/winamp.js",
+      "size": 16081
+    },
+    {
+      "path": "js/wm.js",
+      "size": 7684
+    },
+    {
+      "path": "music/.gitkeep",
+      "size": 0
+    },
+    {
+      "path": "music/cover.jpg",
+      "size": 1346086
+    },
+    {
+      "path": "music/important!!!.md",
+      "size": 451
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 01 press start.mp3",
+      "size": 2522909
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 02 haircut experts (cutscene).mp3",
+      "size": 5174119
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 03 a new day.mp3",
+      "size": 7997087
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 04 working hard.mp3",
+      "size": 7537382
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 05 staff meeting.mp3",
+      "size": 6091388
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 06 enough for today.mp3",
+      "size": 6903909
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 07 coming home.mp3",
+      "size": 8008574
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 08 reputation level up +.mp3",
+      "size": 2221358
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 09 decisive request.mp3",
+      "size": 8149815
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 10 the last challenge.mp3",
+      "size": 8561385
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 11 special client.mp3",
+      "size": 8806364
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 12 vacation mode on.mp3",
+      "size": 6955566
+    },
+    {
+      "path": "music/slowerpace 音楽 - Barbershop Simulator™ - 13 final credits.mp3",
+      "size": 6606488
+    },
+    {
+      "path": "package.json",
+      "size": 342
+    },
+    {
+      "path": "README.md",
+      "size": 2221
+    },
+    {
+      "path": "scripts/build-manifest.mjs",
+      "size": 1532
+    },
+    {
+      "path": "scripts/build-tracks.mjs",
+      "size": 7446
+    },
+    {
+      "path": "scripts/fetch-data.mjs",
+      "size": 6632
+    },
+    {
+      "path": "scripts/serve.mjs",
+      "size": 2929
+    }
+  ]
+}

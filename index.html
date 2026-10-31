@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>danv.is</title>
+  <meta name="description" content="Dan's corner of the internet — a tiny pixel desktop.">
+  <meta name="theme-color" content="#202326">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <canvas id="wallpaper" aria-hidden="true"></canvas>
+
+  <main id="desktop">
+    <ul id="desktop-icons" aria-label="Desktop"></ul>
+
+    <!-- Plasma "Notes" widget. Edit the text here. -->
+    <aside class="note" aria-label="Note"><div class="note-paper">
+      <p>Hi, I'm Dan, a QA Engineer from Bucharest, RO.</p>
+      <p>I grew tired of minimalist peronal pages which use too much tech to show too little context, and decided to go in the opposite way.</p>
+      <p>So here's a mock of a neo-retro Fedora KDE desktop that's showing my Unsplash photos, finished Hardcover books and its own source, all while playing a barber beats album in a nostalgic manner.</p>
+    </div></aside>
+    <div id="windows"></div>
+  </main>
+
+  <nav id="panel" aria-label="Panel">
+    <button id="launcher" aria-label="Application launcher" aria-haspopup="menu" aria-expanded="false"></button>
+    <div id="tasks"></div>
+    <div id="tray"></div>
+    <button id="clock"><span class="time"></span><span class="date"></span></button>
+    <button id="peek" aria-label="Peek at desktop" title="Peek at desktop"></button>
+  </nav>
+
+  <div id="kickoff" role="menu" hidden></div>
+  <div id="ctxmenu" role="menu" hidden></div>
+  <div id="toasts" aria-live="polite"></div>
+  <div id="lock" hidden></div>
+  <div id="splash"><div class="splash-run"><div class="splash-dino" role="img" aria-label="Loading"></div><div class="splash-ground"></div></div><div class="splash-bar"><span></span></div></div>
+
+  <noscript><p class="noscript">This desktop needs JavaScript to boot.</p></noscript>
+</body>
+</html>

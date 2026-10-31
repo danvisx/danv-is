@@ -1,0 +1,22 @@
+{
+  "name": "Daniel Visan",
+  "headline": "QA Engineer",
+  "location": "Bucharest, Romania",
+  "about": "Functional software tester with 10 years of experience, currently working on web apps. With a medical engineering background, I focus on healthcare and clinical software projects, but I'm open to other software industries as well. In my free time, I enjoy reading, cycling, and keeping up with advancements in tech and e-health.",
+  "experience": [
+    {
+      "company": "rinf.tech",
+      "role": "QA Engineer (Test Consultant)",
+      "period": "Apr 2023 – Jun 2026",
+      "place": "Bucharest, Romania",
+      "text": "Worked for Itineris on behalf of rinf.tech."
+    },
+    {
+      "company": "rinf.tech",
+      "role": "QA Engineer (Test Engineer)",
+      "period": "Jun 2022 – Mar 2023",
+      "place": "Bucharest, Romania",
+      "text": "Worked for Fitbit (Google) on behalf of rinf.tech."
+    }
+  ]
+}
