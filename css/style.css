@@ -473,8 +473,7 @@ img { image-rendering: pixelated; }
 .row.item { border-width: 0 0 0 2px; clip-path: none; }
 .row:nth-child(even):not(.selected) { background: rgba(255, 255, 255, 0.025); }
 .row .mini { width: 20px; height: 20px; display: grid; place-items: center; }
-.row .mini img, .row .mini canvas { max-width: 20px; max-height: 20px; }
-canvas.preview { image-rendering: pixelated; width: auto; }
+.row .mini img { max-width: 20px; max-height: 20px; }
 img.preview { image-rendering: auto; }
 .row .name, .row .col { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .row .col { color: var(--dim); }
@@ -522,7 +521,9 @@ img.preview { image-rendering: auto; }
   clip-path: var(--notch);
   pointer-events: none;
 }
-.gv-exif[hidden] { display: none; }
+.gv-exif.no-exif { display: none; }
+.gv-exif-text[hidden] { display: none; }
+.gv-exif-link { display: none; }
 .gv-stage .spinner { position: absolute; left: 50%; top: 50%; margin: -8px 0 0 -8px; display: none; }
 .gv-stage.loading .spinner { display: block; }
 .gv-stage.loading img { opacity: 0.3; }
@@ -662,6 +663,7 @@ img.preview { image-rendering: auto; }
 .ff { display: flex; gap: 24px; align-items: flex-start; margin: 4px 0 8px; }
 .ff-logo { width: 140px; height: 126px; flex: none; margin-top: 4px; }
 .ff-info { min-width: 0; }
+.ff-info a { color: var(--accent); }
 .ff-key { color: var(--accent); }
 .ff-colors { display: flex; }
 :not(.ff-colors) + .ff-colors { margin-top: 12px; }
@@ -1439,7 +1441,19 @@ img.preview { image-rendering: auto; }
   .vs-side { position: absolute; z-index: 2; top: 0; bottom: 22px; left: 44px; width: min(260px, calc(100% - 44px)); box-shadow: 4px 0 0 rgba(0, 0, 0, 0.4); }
   .vs-main { position: relative; }
   .vs-status span:nth-child(n + 5):not(:last-child) { display: none; }
-  .gv-exif { white-space: normal; text-align: center; width: max-content; }
+  .gv-exif, .gv-exif.no-exif {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    max-width: calc(100% - 24px);
+    font-size: 11px;
+    white-space: normal;
+    text-align: center;
+    width: max-content;
+    pointer-events: auto;
+  }
+  .gv-exif-link { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--accent); text-decoration: none; }
   .gv-info { width: auto; max-height: 45%; border-left: 0; border-top: 2px solid var(--line); }
   .ff { flex-direction: column; gap: 8px; }
   .ff-logo { width: 80px; height: 72px; }

@@ -64,8 +64,7 @@ export function createApps(wm, notify) {
       return items.map((b) => ({
         name: b.title,
         sub: b.author,
-        thumb: b.cover,
-        pixelate: true,
+        thumb: coverAt(b.cover, 'SY160'),
         fallback: icons.book,
         search: `${b.title} ${b.author}`,
         open: () => book(b),
@@ -116,28 +115,6 @@ export function createApps(wm, notify) {
       { name: 'music', folder: true, icon: icons.folderMusic, open: (ctl) => ctl.go('music'), cols: [m.status === 'fulfilled' ? `${(m.value.tracks?.length ?? 0) + 2} items` : '—', 'Folder'] },
       { name: 'photos', folder: true, icon: icons.folderPhotos, open: (ctl) => ctl.go('photos'), cols: [count(p), 'Folder'] },
     ];
-  }
-
-  // Covers that can't be resized by URL are shrunk onto a tiny canvas instead,
-  // which keeps the chunky look. Drawing a cross-origin image is fine because
-  // the canvas is only displayed, never read back.
-  function pixelThumb(it) {
-    const c = h('canvas', { class: 'preview', width: '24', height: '36' });
-    const io = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      io.disconnect();
-      const img = new Image();
-      img.onload = () => {
-        c.width = Math.max(1, Math.round((36 * img.naturalWidth) / img.naturalHeight));
-        const g = c.getContext('2d');
-        g.imageSmoothingQuality = 'high';
-        g.drawImage(img, 0, 0, c.width, 36);
-      };
-      img.onerror = () => c.replaceWith(h('img', { src: it.fallback, alt: '', class: 'icon' }));
-      img.src = it.thumb;
-    }, { rootMargin: '200px' });
-    io.observe(c);
-    return c;
   }
 
   function files(path = 'home') {
@@ -255,7 +232,6 @@ export function createApps(wm, notify) {
 
     function thumb(it) {
       if (!it.thumb) return h('img', { src: it.icon ?? it.fallback, alt: '', class: 'icon' });
-      if (it.pixelate) return pixelThumb(it);
       const img = h('img', { src: it.thumb, alt: '', loading: 'lazy', class: 'preview' });
       img.addEventListener('error', () => {
         img.src = it.fallback;
@@ -334,7 +310,11 @@ export function createApps(wm, notify) {
       showInfo = !showInfo;
       paintInfoToggle();
     }, 'Information');
-    const exifBar = h('div', { class: 'gv-exif' });
+    // On phones the Information panel starts closed, so the overlay also carries
+    // the Unsplash link under the camera line.
+    const exifText = h('span', { class: 'gv-exif-text' });
+    const exifLink = h('a', { class: 'gv-exif-link', target: '_blank', rel: 'noopener' }, glyph('external'), 'View on Unsplash');
+    const exifBar = h('div', { class: 'gv-exif' }, exifText, exifLink);
     const stage = h('div', { class: 'gv-stage loading' },
       img,
       exifBar,
@@ -377,8 +357,10 @@ export function createApps(wm, notify) {
       stage.classList.add('loading');
       img.src = photoAt(p, 1600);
       img.alt = p.alt || p.description || 'Photo';
-      exifBar.textContent = exifLine(p.exif);
-      exifBar.hidden = !exifBar.textContent;
+      exifText.textContent = exifLine(p.exif);
+      exifText.hidden = !exifText.textContent;
+      exifLink.href = utm(p.page);
+      exifBar.classList.toggle('no-exif', !exifText.textContent);
       win.setTitle(`${photoName(p)} — Gwenview`);
       counter.textContent = `${i + 1} of ${list.length}`;
 

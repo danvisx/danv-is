@@ -14,7 +14,7 @@
     },
     {
       "path": "css/style.css",
-      "size": 43713
+      "size": 44080
     },
     {
       "path": "data/books.json",
@@ -42,11 +42,11 @@
     },
     {
       "path": "js/apps.js",
-      "size": 29388
+      "size": 28871
     },
     {
       "path": "js/config.js",
-      "size": 641
+      "size": 645
     },
     {
       "path": "js/data.js",
@@ -62,7 +62,7 @@
     },
     {
       "path": "js/konsole.js",
-      "size": 7876
+      "size": 7988
     },
     {
       "path": "js/main.js",

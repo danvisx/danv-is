@@ -53,7 +53,7 @@ async function facts(info) {
     ['Music', `${count(t)} local tracks in music/ (npm run tracks)`],
     ['Mail', 'Web3Forms'],
     ['Build', 'none (no bundler, no node_modules)'],
-    ['Source', SITE.source],
+    ['Source', /^https?:/.test(SITE.source) ? h('a', { href: SITE.source, target: '_blank', rel: 'noopener' }, 'GitHub Repo') : SITE.source],
     ['Page weight', pageWeight()],
     ['Load', loadTime()],
   ];
@@ -92,7 +92,7 @@ export function openTerminal(wm, apps, info) {
     const keys = h('div', { class: 'ff-info' },
       h('div', {}, c('ff-key', SITE.user), '@', c('ff-key', SITE.host)),
       h('div', {}, '-'.repeat(title.length)),
-      rows.map(([k, v]) => h('div', {}, c('ff-key', k), `: ${v}`)),
+      rows.map(([k, v]) => h('div', {}, c('ff-key', k), ': ', v)),
       h('div', { class: 'ff-colors' }, PALETTE.slice(0, 8).map((col) => h('span', { style: `background:${col}` }))),
       h('div', { class: 'ff-colors' }, PALETTE.slice(8).map((col) => h('span', { style: `background:${col}` }))),
     );
