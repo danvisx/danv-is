@@ -233,6 +233,20 @@ function lock() {
   tick();
 }
 
+// ── Analytics ─────────────────────────────────────────────────────────────
+// Page views only, no cookies. Local runs, previews and browsers that send
+// Global Privacy Control are left out.
+function beacon() {
+  const live = location.hostname === SITE.host || location.hostname === `www.${SITE.host}`;
+  if (!SITE.analytics || !live || navigator.globalPrivacyControl) return;
+  document.head.append(h('script', {
+    defer: true,
+    src: 'https://static.cloudflareinsights.com/beacon.min.js',
+    'data-cf-beacon': JSON.stringify({ token: SITE.analytics }),
+    onerror: (e) => e.target.remove(),
+  }));
+}
+
 // ── Boot splash ───────────────────────────────────────────────────────────
 const splash = $('#splash');
 splash.querySelector('.splash-dino').style.backgroundImage = `url(${dinoSheet})`;
@@ -244,6 +258,7 @@ try {
 const quick = booted || matchMedia('(prefers-reduced-motion: reduce)').matches;
 setTimeout(() => {
   splash.classList.add('done');
+  beacon();
   setTimeout(() => splash.remove(), 300);
   if (!booted) {
     notify({

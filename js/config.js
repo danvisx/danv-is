@@ -18,4 +18,7 @@ export const SITE = {
 
   // Public access key from https://web3forms.com (it is safe to ship to the browser).
   web3formsKey: '4255bcb7-71b6-4919-a517-5a155c230540',
+
+  // Cloudflare Web Analytics token. Counted only on the live host; empty turns it off.
+  analytics: 'dc187783c80542e79d924b6aae2e20e4',
 };

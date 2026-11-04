@@ -21,6 +21,8 @@ npm run dev
 
 Then open http://localhost:8080. Opening `index.html` from disk won't work since the page fetches its data. The dev server is a small Node script because Python's built-in server can't seek inside audio files.
 
+Page views are counted with Cloudflare Web Analytics, on `danv.is` only (token in `js/config.js`).
+
 Settings live in `js/config.js`, the LinkedIn preview in `data/profile.json`.
 
 ## Projects

@@ -62,7 +62,7 @@
     },
     {
       "path": "js/config.js",
-      "size": 737
+      "size": 875
     },
     {
       "path": "js/data.js",
@@ -78,11 +78,11 @@
     },
     {
       "path": "js/konsole.js",
-      "size": 8084
+      "size": 8144
     },
     {
       "path": "js/main.js",
-      "size": 10273
+      "size": 11023
     },
     {
       "path": "js/vscode.js",
@@ -170,7 +170,7 @@
     },
     {
       "path": "README.md",
-      "size": 2738
+      "size": 2838
     },
     {
       "path": "scripts/build-manifest.mjs",

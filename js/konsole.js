@@ -52,6 +52,7 @@ async function facts(info) {
     ['Photos', `${count(p)} from Unsplash, refreshed daily`],
     ['Music', `${count(t)} local tracks in music/ (npm run tracks)`],
     ['Mail', 'Web3Forms'],
+    ['Analytics', 'Cloudflare Web Analytics (no cookies)'],
     ['Build', 'none (no bundler, no node_modules)'],
     ['Source', /^https?:/.test(SITE.source) ? h('a', { href: SITE.source, target: '_blank', rel: 'noopener' }, 'GitHub Repo') : SITE.source],
     ['Page weight', pageWeight()],
