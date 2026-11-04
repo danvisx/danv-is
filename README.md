@@ -4,7 +4,7 @@ My personal site, made to look like a pixelated Fedora KDE desktop. Plain HTML, 
 
 On the desktop:
 
-- Files: books from Hardcover, photos from Unsplash, and the music folder
+- Home: books from Hardcover, photos from Unsplash, the music folder and my projects
 - Terminal: runs fastfetch on start, `help` lists the rest
 - Winamp: plays whatever is in `music/`
 - VS Code: shows the site's own source
@@ -22,6 +22,16 @@ npm run dev
 Then open http://localhost:8080. Opening `index.html` from disk won't work since the page fetches its data. The dev server is a small Node script because Python's built-in server can't seek inside audio files.
 
 Settings live in `js/config.js`, the LinkedIn preview in `data/profile.json`.
+
+## Projects
+
+Each project is one entry in `data/projects.json` and opens in Falkon as a store-style page. To add one, copy an entry and fill in:
+
+- `id`, `name`, `subtitle`, `url` (shown in the address bar), `version`, `license`, `tags`
+- `logo`: an image in `data/projects/`, shown at 96 px
+- `about`: a short Markdown file in `data/projects/`, shown under the header
+- `repo`: a source link, the Source button shows when it is set
+- `kofi`: a Ko-fi page, the Support button stays hidden until it is set
 
 ## Books and photos
 

@@ -44,7 +44,7 @@ const terminal = () => openTerminal(wm, apps, { wallpaper: () => ({ seed, theme 
 
 // ── Desktop icons ─────────────────────────────────────────────────────────
 const DESKTOP = [
-  { label: 'Files', icon: icons.files, open: () => apps.files() },
+  { label: 'Home', icon: icons.files, open: () => apps.files() },
   { label: 'Terminal', icon: icons.terminal, open: terminal },
   { label: 'Winamp', icon: icons.winamp, open: () => openWinamp(wm) },
   { label: 'VS Code', icon: icons.code, open: code },
@@ -92,7 +92,7 @@ $('#desktop').addEventListener('contextmenu', (e) => {
   ctx.replaceChildren(
     menuItem({ label: 'Next Wallpaper Image', g: 'wallpaper', run: nextWallpaper }),
     h('hr'),
-    menuItem({ label: 'Open Files', icon: icons.files, run: () => apps.files() }),
+    menuItem({ label: 'Open Home', icon: icons.files, run: () => apps.files() }),
     menuItem({ label: 'Open Terminal', icon: icons.terminal, run: terminal }),
     menuItem({ label: 'New Message…', icon: icons.mail, run: apps.mail }),
     h('hr'),
@@ -106,12 +106,13 @@ $('#desktop').addEventListener('contextmenu', (e) => {
 });
 
 const LAUNCH = [
-  { label: 'Files', hint: 'Dolphin file manager', icon: icons.files, run: () => apps.files() },
+  { label: 'Home', hint: 'Dolphin file manager', icon: icons.files, run: () => apps.files() },
   { label: 'Konsole', hint: 'Terminal (try fastfetch)', icon: icons.terminal, run: terminal },
   { label: 'Winamp', hint: 'It really whips', icon: icons.winamp, run: () => openWinamp(wm) },
   { label: 'VS Code', hint: "This site's source code", icon: icons.code, run: code },
   { label: 'Books', hint: 'What I have been reading', icon: icons.folderBooks, run: apps.books },
   { label: 'Photos', hint: 'My Unsplash uploads', icon: icons.folderPhotos, run: apps.photos },
+  { label: 'Projects', hint: 'Things I have made', icon: icons.folderProjects, run: apps.projects },
   { label: 'Mail', hint: 'Send me a message', icon: icons.mail, run: apps.mail },
   { label: 'LinkedIn', hint: 'linkedin.com', icon: icons.linkedin, run: apps.linkedin },
 ];

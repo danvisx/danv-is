@@ -55,6 +55,7 @@ const FOLDER_PAL = {
 const EMBLEM_HOME = ['...w...', '..www..', '.wwwww.', 'wwwwwww', '.wweww.', '.wweww.'];
 const EMBLEM_BOOK = ['www.www', 'wew.wew', 'www.www', 'wew.wew', 'wwwewww'];
 const EMBLEM_PICTURE = ['wwwwwww', 'wfffyyw', 'wfefffw', 'weeefew', 'wwwwwww'];
+const EMBLEM_CODE = ['....w...', '.w..w.w.', 'w..w...w', '.w.w..w.', '...w....'];
 
 const LINKEDIN = [
   '.kkkkkkkkkkkkkk.',
@@ -299,6 +300,7 @@ export const icons = {
   folderBooks: pixmap(overlay(FOLDER, EMBLEM_BOOK, 4, 8), FOLDER_PAL),
   folderPhotos: pixmap(overlay(FOLDER, EMBLEM_PICTURE, 4, 8), FOLDER_PAL),
   folderMusic: pixmap(overlay(FOLDER, EMBLEM_MUSIC, 4, 8), FOLDER_PAL),
+  folderProjects: pixmap(overlay(FOLDER, EMBLEM_CODE, 4, 8), FOLDER_PAL),
   text: pixmap(overlay(PAGE, EMBLEM_TEXT, 4, 6), PAGE_PAL),
   audio: pixmap(overlay(PAGE, EMBLEM_NOTE, 4, 7), PAGE_PAL),
   playlist: pixmap(overlay(PAGE, EMBLEM_PLAYLIST, 4, 5), PAGE_PAL),

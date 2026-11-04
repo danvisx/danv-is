@@ -102,9 +102,11 @@ export function openTerminal(wm, apps, info) {
 
   const OPENERS = {
     files: () => apps.files(),
+    home: () => apps.files(),
     books: apps.books,
     photos: apps.photos,
     music: apps.music,
+    projects: apps.projects,
     mail: apps.mail,
     linkedin: apps.linkedin,
   };
@@ -115,7 +117,7 @@ export function openTerminal(wm, apps, info) {
       for (const [name, desc] of [
         ['fastfetch', 'what this site is made of'],
         ['ls', 'list files'],
-        ['open <name>', 'files, books, photos, music, mail, linkedin'],
+        ['open <name>', 'home, books, photos, music, projects, mail, linkedin'],
         ['code .', "browse this site's source"],
         ['whoami', 'who am I'],
         ['date', 'print the date'],
@@ -126,7 +128,7 @@ export function openTerminal(wm, apps, info) {
     },
     fastfetch,
     neofetch: fastfetch,
-    ls: () => print(c('dir', 'books'), '  ', c('dir', 'music'), '  ', c('dir', 'photos')),
+    ls: () => print(c('dir', 'books'), '  ', c('dir', 'music'), '  ', c('dir', 'photos'), '  ', c('dir', 'projects')),
     cat: (args) => print(`cat: ${args[0] ?? ''}: No such file or directory`),
     open: (args) => {
       const run = OPENERS[args[0]];

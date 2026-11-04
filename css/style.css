@@ -475,6 +475,8 @@ img { image-rendering: pixelated; }
 .row .mini { width: 20px; height: 20px; display: grid; place-items: center; }
 .row .mini img { max-width: 20px; max-height: 20px; }
 img.preview { image-rendering: auto; }
+/* A logo has a transparent background, so no cover shadow. */
+.item .thumb .preview.logo { box-shadow: none; }
 .row .name, .row .col { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .row .col { color: var(--dim); }
 
@@ -696,7 +698,8 @@ img.preview { image-rendering: auto; }
 }
 .trap { position: absolute; left: -9999px; }
 
-/* ── LinkedIn (Falkon) ──────────────────────────────────────────────── */
+/* ── Falkon ──────────────────────────────────────────────────────────── */
+
 .falkon { display: flex; flex-direction: column; }
 .falkon-url {
   flex: 1;
@@ -710,6 +713,57 @@ img.preview { image-rendering: auto; }
 .falkon-lock { color: #27ae60; display: inline-flex; }
 .falkon-host { overflow: hidden; text-overflow: ellipsis; }
 .falkon-view { flex: 1; min-height: 0; display: flex; background: #f4f2ee; }
+
+/* Project page: an extension store / package page */
+.pj-page {
+  flex: 1;
+  overflow: auto;
+  color: #1f2328;
+  background: #fff;
+  user-select: text;
+}
+.pj-page .empty { color: #666; }
+.pj-wrap { max-width: 860px; margin: 0 auto; padding: 28px 28px 40px; }
+.pj-head { display: flex; gap: 24px; align-items: flex-start; padding-bottom: 24px; border-bottom: 2px solid #e6e8eb; }
+.pj-logo { flex: none; width: 96px; height: 96px; image-rendering: auto; }
+.pj-title { min-width: 0; }
+.pj-title h1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin: 0; font-size: 30px; line-height: 1.15; }
+.pj-ver { padding: 1px 8px; font-size: 13px; font-weight: 400; color: #57606a; background: #eef1f4; }
+.pj-sub { margin: 6px 0 0; font-size: 15px; color: #57606a; }
+.pj-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.pj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-weight: 700;
+  color: #1f2328;
+  text-decoration: none;
+  border: 2px solid #d0d7de;
+  clip-path: var(--notch);
+}
+.pj-btn[hidden] { display: none; }
+.pj-btn:hover { background: #f3f4f6; }
+.pj-btn.primary { color: #fff; background: #0969da; border-color: #0969da; }
+.pj-btn.primary:hover { background: #0550ae; border-color: #0550ae; }
+.pj-btn.kofi { color: #fff; background: #ff5e5b; border-color: #ff5e5b; }
+.pj-btn.kofi:hover { background: #e54845; border-color: #e54845; }
+.pj-body { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; padding-top: 20px; }
+.pj-about { font-size: 15px; line-height: 1.6; }
+.pj-about > :first-child { margin-top: 0; }
+.pj-about h2 { margin: 24px 0 8px; font-size: 18px; }
+.pj-about ul { padding-left: 22px; list-style: square; }
+.pj-about li { margin: 4px 0; }
+.pj-about code { padding: 0 4px; background: #eef1f4; }
+.pj-about a, .pj-meta a { color: #0969da; overflow-wrap: anywhere; }
+.pj-dim { color: #57606a; }
+.pj-meta { font-size: 14px; }
+.pj-meta dl { margin: 0; }
+.pj-meta dt { margin-top: 12px; font-size: 12px; font-weight: 700; color: #57606a; text-transform: uppercase; }
+.pj-meta dt:first-child { margin-top: 0; }
+.pj-meta dd { margin: 2px 0 0; }
+.pj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.pj-tags span { padding: 1px 8px; font-size: 12px; color: #0969da; background: #ddf4ff; }
 .li-page {
   flex: 1;
   overflow: auto;
@@ -1463,6 +1517,11 @@ img.preview { image-rendering: auto; }
   .li-card { padding: 12px 14px; }
   .li-banner { margin: 0 -14px; height: 72px; }
   .li-avatar { width: 88px; height: 88px; margin-top: -44px; }
+  .pj-wrap { padding: 16px 16px 28px; }
+  .pj-head { gap: 14px; }
+  .pj-logo { width: 64px; height: 64px; }
+  .pj-title h1 { font-size: 24px; }
+  .pj-body { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

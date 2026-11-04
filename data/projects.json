@@ -1,0 +1,17 @@
+{
+  "projects": [
+    {
+      "id": "qtiles",
+      "name": "qtiles",
+      "subtitle": "A free pixel-art editor for the browser, in 2D and isometric",
+      "url": "https://qtiles.app",
+      "logo": "data/projects/qtiles.png",
+      "about": "data/projects/qtiles.md",
+      "version": "0.3.0",
+      "license": "",
+      "repo": "",
+      "kofi": "",
+      "tags": ["pixel art", "isometric", "editor", "ipad"]
+    }
+  ]
+}

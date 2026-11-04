@@ -1,8 +1,10 @@
 import { h, bindOpen, fmtDate } from './dom.js';
 import { icons, glyph } from './icons.js';
-import { loadBooks, loadPhotos, loadProfile, loadTracks, coverAt, photoAt, photoName } from './data.js';
+import { loadBooks, loadPhotos, loadProfile, loadProjects, loadTracks, coverAt, photoAt, photoName } from './data.js';
 import { SITE } from './config.js';
 import { openWinamp } from './winamp.js';
+
+const bare = (url) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 const utm = (url) => `${url}${url.includes('?') ? '&' : '?'}utm_source=danv_is&utm_medium=referral`;
 
@@ -41,6 +43,7 @@ export function createApps(wm, notify) {
     books: { label: 'books', icon: icons.folderBooks },
     music: { label: 'music', icon: icons.folderMusic },
     photos: { label: 'photos', icon: icons.folderPhotos },
+    projects: { label: 'projects', icon: icons.folderProjects },
   };
 
   const COLUMNS = {
@@ -48,6 +51,7 @@ export function createApps(wm, notify) {
     books: ['Author', 'Rating', 'Read'],
     photos: ['Location', 'Camera', 'Likes', 'Uploaded'],
     music: ['Album', 'Length', 'Type'],
+    projects: ['Address', 'Version', 'Type'],
   };
 
   const DETAILS_ON_DESKTOP = new Set(['books', 'music']);
@@ -56,6 +60,7 @@ export function createApps(wm, notify) {
     books: 'No books on the shelf yet.',
     photos: 'No photos here yet.',
     music: 'No music here yet.',
+    projects: 'No projects here yet.',
   };
 
   async function list(path) {
@@ -108,12 +113,27 @@ export function createApps(wm, notify) {
         }),
       ];
     }
-    const [b, p, m] = await Promise.allSettled([loadBooks(), loadPhotos(), loadTracks()]);
+    if (path === 'projects') {
+      const { projects = [] } = await loadProjects();
+      return projects.map((p) => ({
+        name: p.name,
+        sub: p.subtitle,
+        thumb: p.logo,
+        fallback: icons.folderProjects,
+        logo: true,
+        search: `${p.name} ${p.subtitle ?? ''} ${(p.tags ?? []).join(' ')}`,
+        tip: [p.name, p.subtitle, p.url].filter(Boolean).join('\n'),
+        open: () => project(p),
+        cols: [bare(p.url), p.version ?? '', 'Web page'],
+      }));
+    }
+    const [b, p, m, pr] = await Promise.allSettled([loadBooks(), loadPhotos(), loadTracks(), loadProjects()]);
     const count = (s) => (s.status === 'fulfilled' ? `${s.value.items.length} items` : '—');
     return [
       { name: 'books', folder: true, icon: icons.folderBooks, open: (ctl) => ctl.go('books'), cols: [count(b), 'Folder'] },
       { name: 'music', folder: true, icon: icons.folderMusic, open: (ctl) => ctl.go('music'), cols: [m.status === 'fulfilled' ? `${(m.value.tracks?.length ?? 0) + 2} items` : '—', 'Folder'] },
       { name: 'photos', folder: true, icon: icons.folderPhotos, open: (ctl) => ctl.go('photos'), cols: [count(p), 'Folder'] },
+      { name: 'projects', folder: true, icon: icons.folderProjects, open: (ctl) => ctl.go('projects'), cols: [pr.status === 'fulfilled' ? `${pr.value.projects?.length ?? 0} items` : '—', 'Folder'] },
     ];
   }
 
@@ -232,7 +252,7 @@ export function createApps(wm, notify) {
 
     function thumb(it) {
       if (!it.thumb) return h('img', { src: it.icon ?? it.fallback, alt: '', class: 'icon' });
-      const img = h('img', { src: it.thumb, alt: '', loading: 'lazy', class: 'preview' });
+      const img = h('img', { src: it.thumb, alt: '', loading: 'lazy', class: it.logo ? 'preview logo' : 'preview' });
       img.addEventListener('error', () => {
         img.src = it.fallback;
         img.className = 'icon';
@@ -434,6 +454,25 @@ export function createApps(wm, notify) {
     document.head.append(s);
   }));
 
+  const fetchText = (path) => fetch(path.split('/').map(encodeURIComponent).join('/'), { cache: 'no-cache' })
+    .then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.text();
+    });
+
+  // Markdown to an <article>, with outside links opening in a new tab.
+  async function markdown(source, cls) {
+    const marked = await loadMarked();
+    const art = h('article', { class: cls });
+    if (marked) art.innerHTML = marked.parse(source);
+    else art.append(h('pre', {}, source));
+    art.querySelectorAll('a[href^="http"]').forEach((a) => {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+    return art;
+  }
+
   function kwrite(path) {
     const id = `kwrite-${path}`;
     if (wm.get(id)) return wm.focus(wm.get(id));
@@ -458,26 +497,15 @@ export function createApps(wm, notify) {
       if (m === 'source') {
         doc.replaceChildren(h('ol', { class: 'source' }, source.split('\n').map((line) => h('li', {}, line || ' '))));
       } else {
-        const marked = await loadMarked();
+        const art = await markdown(source, 'doc');
         if (mode !== 'preview') return;
-        const art = h('article', { class: 'doc' });
-        if (marked) art.innerHTML = marked.parse(source);
-        else art.append(h('pre', {}, source));
-        art.querySelectorAll('a[href^="http"]').forEach((a) => {
-          a.target = '_blank';
-          a.rel = 'noopener';
-        });
         doc.replaceChildren(art);
       }
       doc.scrollTop = 0;
     }
 
     show(mode);
-    fetch(path.split('/').map(encodeURIComponent).join('/'), { cache: 'no-cache' })
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.text();
-      })
+    fetchText(path)
       .then((text) => {
         source = text.replace(/\n$/, '');
         show(mode);
@@ -550,6 +578,92 @@ export function createApps(wm, notify) {
     }
   }
 
+  // ── Falkon ─────────────────────────────────────────────────────────────
+  // The browser frame around a mock page. Back and Forward are for show;
+  // Reload shows the spinner for a moment and calls render again.
+  function falkon({ id, title, icon, url, page, render, width = 760, height = 640 }) {
+    const status = h('span', { class: 'status-text' }, 'Done');
+    function reload() {
+      status.textContent = `Loading ${bare(url)}…`;
+      page.replaceChildren(spinner());
+      setTimeout(() => {
+        render();
+        status.textContent = 'Done';
+      }, 350);
+    }
+    const back = tb('left', 'Back');
+    const fwd = tb('right', 'Forward');
+    back.disabled = fwd.disabled = true;
+    const body = h('div', { class: 'falkon' },
+      h('div', { class: 'toolbar' },
+        back, fwd,
+        tb('refresh', 'Reload', reload),
+        h('div', { class: 'falkon-url field', title: url },
+          h('span', { class: 'falkon-lock' }, glyph('lock')),
+          h('span', { class: 'falkon-host' }, url.replace(/\/$/, '')),
+        ),
+        tb('external', 'Open in a new tab', () => window.open(url, '_blank', 'noopener'), 'Open'),
+      ),
+      h('div', { class: 'falkon-view' }, page),
+      h('footer', { class: 'statusbar' }, status),
+    );
+    page.replaceChildren(spinner());
+    return wm.open({ id, title, icon, body, width, height });
+  }
+
+  // ── Projects ───────────────────────────────────────────────────────────
+  // A store-style page for one entry of data/projects.json: logo, name,
+  // subtitle and buttons on top, the Markdown in `about` below, and the
+  // details in a side column. A Ko-fi button is there from the start and
+  // shows once the entry has a `kofi` URL.
+  function project(p) {
+    const id = `project-${p.id}`;
+    if (wm.get(id)) return wm.focus(wm.get(id));
+    const page = h('div', { class: 'pj-page' });
+    let about = null;
+    const link = (href, text) => h('a', { href, target: '_blank', rel: 'noopener' }, text);
+    const row = (k, v) => v && [h('dt', {}, k), h('dd', {}, v)];
+
+    function render() {
+      const logo = p.logo
+        ? h('img', { class: 'pj-logo', src: p.logo, alt: `${p.name} logo` })
+        : h('img', { class: 'pj-logo', src: icons.folderProjects, alt: '' });
+      page.replaceChildren(h('div', { class: 'pj-wrap' },
+        h('header', { class: 'pj-head' },
+          logo,
+          h('div', { class: 'pj-title' },
+            h('h1', {}, p.name, p.version && h('span', { class: 'pj-ver' }, `v${p.version}`)),
+            p.subtitle && h('p', { class: 'pj-sub' }, p.subtitle),
+            h('div', { class: 'pj-actions' },
+              h('a', { class: 'pj-btn primary', href: utm(p.url), target: '_blank', rel: 'noopener' }, glyph('external'), `Open ${bare(p.url)}`),
+              p.repo && h('a', { class: 'pj-btn', href: p.repo, target: '_blank', rel: 'noopener' }, glyph('code'), 'Source'),
+              h('a', { class: 'pj-btn kofi', href: p.kofi || '#', target: '_blank', rel: 'noopener', hidden: !p.kofi }, glyph('heart'), 'Support on Ko-fi'),
+            ),
+          ),
+        ),
+        h('div', { class: 'pj-body' },
+          about ?? h('p', { class: 'pj-dim' }, 'No description yet.'),
+          h('aside', { class: 'pj-meta' },
+            h('dl', {},
+              row('Homepage', link(utm(p.url), bare(p.url))),
+              row('Version', p.version),
+              row('License', p.license),
+              row('Repository', p.repo && link(p.repo, bare(p.repo))),
+            ),
+            p.tags?.length > 0 && h('div', { class: 'pj-tags' }, p.tags.map((t) => h('span', {}, t))),
+          ),
+        ),
+      ));
+      page.scrollTop = 0;
+    }
+
+    falkon({ id, title: `${p.name} — Falkon`, icon: p.logo || icons.folderProjects, url: p.url, page, render, width: 820, height: 600 });
+    (p.about ? fetchText(p.about).then((text) => markdown(text, 'pj-about')) : Promise.resolve(null))
+      .then((art) => (about = art))
+      .catch(() => {})
+      .finally(render);
+  }
+
   // ── LinkedIn ───────────────────────────────────────────────────────────
   // A Falkon window showing a preview of the profile (data/profile.json: the
   // top card, About and the current job) with the rest behind a blurred wall.
@@ -560,7 +674,6 @@ export function createApps(wm, notify) {
     const url = SITE.linkedin;
     const external = () => window.open(url, '_blank', 'noopener');
     const page = h('div', { class: 'li-page' });
-    const status = h('span', { class: 'status-text' }, 'Done');
     const card = (title, ...kids) => h('section', { class: 'li-card' }, title && h('h2', {}, title), ...kids);
 
     const logo = (name) => h('div', { class: 'li-logo', 'aria-hidden': 'true' }, (name ?? '?')[0]);
@@ -626,33 +739,7 @@ export function createApps(wm, notify) {
       page.scrollTop = 0;
     }
 
-    function reload() {
-      status.textContent = `Loading ${url.replace(/^https?:\/\//, '')}…`;
-      page.replaceChildren(spinner());
-      setTimeout(() => {
-        render();
-        status.textContent = 'Done';
-      }, 350);
-    }
-
-    const back = tb('left', 'Back');
-    const fwd = tb('right', 'Forward');
-    back.disabled = fwd.disabled = true;
-    const body = h('div', { class: 'falkon' },
-      h('div', { class: 'toolbar' },
-        back, fwd,
-        tb('refresh', 'Reload', reload),
-        h('div', { class: 'falkon-url field', title: url },
-          h('span', { class: 'falkon-lock' }, glyph('lock')),
-          h('span', { class: 'falkon-host' }, url.replace(/^https?:\/\//, '').replace(/\/$/, '')),
-        ),
-        tb('external', 'Open in a new tab', external, 'Open'),
-      ),
-      h('div', { class: 'falkon-view' }, page),
-      h('footer', { class: 'statusbar' }, status),
-    );
-    const win = wm.open({ id: 'linkedin', title: 'LinkedIn — Falkon', icon: icons.linkedin, body, width: 760, height: 640 });
-    page.replaceChildren(spinner());
+    const win = falkon({ id: 'linkedin', title: 'LinkedIn — Falkon', icon: icons.linkedin, url, page, render });
     loadProfile()
       .then((json) => {
         p = json;
@@ -668,6 +755,7 @@ export function createApps(wm, notify) {
     linkedin,
     books: () => files('books'),
     music: () => files('music'),
+    projects: () => files('projects'),
     photos: () => files('photos'),
   };
 }

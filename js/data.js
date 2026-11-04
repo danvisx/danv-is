@@ -18,6 +18,7 @@ export const loadBooks = () => load('books', 'data/books.json');
 export const loadPhotos = () => load('photos', 'data/photos.json');
 export const loadTracks = () => load('tracks', 'data/tracks.json');
 export const loadProfile = () => load('profile', 'data/profile.json');
+export const loadProjects = () => load('projects', 'data/projects.json');
 
 // Goodreads covers live on Amazon's image servers, which resize on a
 // "._SY36_" style modifier placed before the extension. Other hosts are
